@@ -1,17 +1,45 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <todo-header msg="Welcome to Your Vue.js App"/>
+    <todo-input @addItem="addItem"></todo-input>
+    <todo-list v-bind:probsdata="items.data"></todo-list>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TodoHeader from "@/components/TodoHeader.vue";
+import TodoList from "@/components/TodoList.vue";
+import TodoInput from "@/components/TodoInput";
+import axios from "axios";
 
 export default {
   name: 'App',
+  data() {
+    return {
+      items: []
+    }
+  },
   components: {
-    HelloWorld
+    'todo-header': TodoHeader,
+    'todo-list': TodoList,
+    'todo-input': TodoInput
+  },
+  methods: {
+    addItem(item) {
+      console.log("asdasd :  "+item);
+      axios.post('todo/api',item);
+      this.items.data.push(item);
+    },
+    startApp() {
+      axios.get('todo/').then(res => {
+        console.log(res);
+        this.items = res.data;
+      })
+    }
+  },
+  created() {
+    this.startApp();
   }
 }
 </script>
