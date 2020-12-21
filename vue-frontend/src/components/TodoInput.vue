@@ -45,7 +45,7 @@ input:focus{
   height: 50px;
   line-height: 50px;
   border-radius: 5px;
-  width: 500px; margin-left: 700px;
+  width: 500px; margin:auto;
 }
 .inputBox input{
   border-style:none;

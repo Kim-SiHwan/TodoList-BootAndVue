@@ -26,7 +26,7 @@ export default {
 
 <style>
 .listBox{
-  width: 500px; margin-left: 700px;
+  width: 500px; margin:auto;
 
 }
 ul {

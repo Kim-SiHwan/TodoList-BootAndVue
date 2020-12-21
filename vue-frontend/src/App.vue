@@ -31,7 +31,9 @@ export default {
   },
   methods: {
     addItem(item) {
+
       axios.post('todo/',item).then(res=>{
+        console.log(res);
         this.items = res.data;
       });
     },
@@ -45,7 +47,7 @@ export default {
       this.items.data.splice(index,1);
     },
     clearItems(){
-      axios.delete('todo/');
+      axios.delete('todo/all');
       this.items=[];
     }
   },

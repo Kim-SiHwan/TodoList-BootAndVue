@@ -36,7 +36,7 @@ public class TodoController {
         service.removeItem(itemId);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/all")
     public void removeAll(){
         service.removeAll();
     }
