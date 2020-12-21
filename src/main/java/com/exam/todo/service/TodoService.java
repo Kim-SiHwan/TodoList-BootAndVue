@@ -36,4 +36,9 @@ public class TodoService {
         Todo todo= repository.findById(itemId).get();
         repository.delete(todo);
     }
+
+    @Transactional
+    public void removeAll(){
+        repository.deleteAll();
+    }
 }
