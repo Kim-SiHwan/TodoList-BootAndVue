@@ -2,6 +2,7 @@ package com.exam.todo.dto;
 
 import com.exam.todo.domain.Todo;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 public class RequestDto {
