@@ -3,7 +3,8 @@
     <img alt="Vue logo" src="./assets/logo.png">
     <todo-header msg="Welcome to Your Vue.js App"/>
     <todo-input @addItem="addItem"></todo-input>
-    <todo-list v-bind:probsdata="items.data"></todo-list>
+    <todo-list v-bind:probsdata="items.data"
+      @removeItem="removeItem"></todo-list>
   </div>
 </template>
 
@@ -17,7 +18,7 @@ export default {
   name: 'App',
   data() {
     return {
-      items: []
+      items: [],
     }
   },
   components: {
@@ -27,15 +28,18 @@ export default {
   },
   methods: {
     addItem(item) {
-      console.log("asdasd :  "+item);
-      axios.post('todo/api',item);
-      this.items.data.push(item);
+      axios.post('todo/api',item).then(res=>{
+        this.items = res.data;
+      });
     },
     startApp() {
       axios.get('todo/').then(res => {
-        console.log(res);
         this.items = res.data;
       })
+    },
+    removeItem(itemId,index){
+      axios.delete('todo/'+itemId);
+      this.items.data.splice(index,1);
     }
   },
   created() {
