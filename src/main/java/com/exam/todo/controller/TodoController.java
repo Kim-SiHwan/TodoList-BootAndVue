@@ -24,7 +24,7 @@ public class TodoController {
         return new ResponseEntity(getAll(), HttpStatus.OK);
     }
 
-    @PostMapping("/api")
+    @PostMapping
     public ResponseEntity addItem(@RequestBody RequestDto requestDto){
         Todo todo = requestDto.toEntity(requestDto);
         service.createItem(todo);
@@ -34,5 +34,10 @@ public class TodoController {
     @DeleteMapping("/{itemId}")
     public void removeItem(@PathVariable("itemId") Long itemId){
         service.removeItem(itemId);
+    }
+
+    @DeleteMapping
+    public void removeAll(){
+        service.removeAll();
     }
 }
