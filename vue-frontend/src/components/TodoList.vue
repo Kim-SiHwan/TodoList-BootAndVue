@@ -1,7 +1,8 @@
 <template>
   <ul>
     <li v-for="(list,index) in probsdata" :key="index">
-      {{list.item}}, {{index}}
+      {{list.item}}
+      <button @click="removeItem(list.itemId,index)">제거</button>
     </li>
   </ul>
 
@@ -11,9 +12,9 @@
 export default {
   name: "TodoList",
   props: ['probsdata'],
-  data(){
-    return{
-      list:''
+  methods: {
+    removeItem(itemId,index){
+      this.$emit('removeItem',itemId,index);
     }
   }
 }
