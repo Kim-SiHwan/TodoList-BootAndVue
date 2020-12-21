@@ -21,15 +21,14 @@ public class TodoController {
 
     @GetMapping
     public ResponseEntity getTodos(){
-        System.out.println("getTodos!");
         return new ResponseEntity(getAll(), HttpStatus.OK);
     }
 
     @PostMapping("/api")
-    public void addItem(@RequestBody RequestDto requestDto){
-        System.out.println(requestDto.getItem());
+    public ResponseEntity addItem(@RequestBody RequestDto requestDto){
         Todo todo = requestDto.toEntity(requestDto);
         service.createItem(todo);
+        return new ResponseEntity(getAll(),HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{itemId}")
